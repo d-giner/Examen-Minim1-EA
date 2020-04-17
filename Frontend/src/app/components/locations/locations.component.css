@@ -1,0 +1,71 @@
+.form-container {
+    font: 95% Arial, Helvetica, sans-serif;
+    max-width: 800px;
+    padding: 16px;
+    margin: 10px auto;
+    background:lightblue;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px snow;
+    border-radius: 4px;
+  }
+
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }
+
+  .form-container .latitude, .form-container .longitude{
+    width: 49%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px snow;
+    border-radius: 4px;
+  }
+
+  .form-container .coordenades{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+    h1 {
+    background: #d1434a;
+    padding: 20px 0;
+    font-size: 140%;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+    margin: -16px -16px 16px -16px;
+  }
+
+  #locations {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+  }
+  
+  #locations td, #locations th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  #locations tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #locations tr:hover {background-color: #ddd;}
+  
+  #locations th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+  }

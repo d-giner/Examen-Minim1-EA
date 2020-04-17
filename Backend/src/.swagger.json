@@ -1,0 +1,75 @@
+  
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "University management swagger site",
+        "description": "Place fort test all the functions of this API.",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "",
+    "tags": [{
+        "name": "Universirty management",
+        "description": "Api to manage students and subjects."
+    }],
+    "definitions": {
+        "Student": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "String", "required": true
+                },
+                "address": {
+                    "type": "String", "required": true
+                },
+                "phones": [{
+                    "home": {
+                        "type": "String"
+                    }, 
+                    "work": {
+                        "type": "String"
+                    }
+                }],
+                "studies": {
+                    "type": "String", "required": true, "enum": ["Telemática", "Sistemas", "Aeros"]
+                }
+            }
+        }
+    },
+    "paths": {
+        "/university/getStudent": {
+          "get": {
+            "tags": [
+              "User"
+            ],
+            "summary": "Get user with given ID",
+            "parameters": [
+              {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "description": "User with id",
+                "schema": {
+                  "$ref": "#/definitions/id"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              },
+              "404": {
+                "description": "Failed. Cat not found."
+              }
+            }
+          }
+        }
+    }
+}

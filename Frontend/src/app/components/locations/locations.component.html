@@ -1,0 +1,122 @@
+<div class="form-container">
+    <h1>Locations service</h1>
+
+    <!-- Formulari per afegir una nova localització -->
+    <form [formGroup]="addNewLocationForm" (ngSubmit)="postNewLocation(addNewLocationForm.value)">
+        <h2>Afegir una nova localització:</h2>
+
+        <input type="text" formControlName="name" placeholder="Nom del país">
+        <div *ngIf="addNewLocationForm.get('name').hasError('required') && addNewLocationForm.get('name').touched">
+            El camp és obligatori!.
+        </div>
+
+        <br>
+
+        <input type="text" formControlName="state" placeholder="1 = Actiu, 0 = Inactiu">
+        <div *ngIf="addNewLocationForm.get('state').hasError('required') && addNewLocationForm.get('state').touched">
+            El camp és obligatori!.
+        </div>
+
+        <input type="text" formControlName="population" placeholder="Nombre de la densitat de població del país.">
+
+        <br>
+        <div class="coordenades">
+            <input class="latitude" type="text" formControlName="latitude" placeholder="Latitud. Ex.: 0.123456">
+
+            <div
+                *ngIf=" (addNewLocationForm.get('latitude').hasError('minlength') || addNewLocationForm.get('latitude').hasError('maxlength')) && addNewLocationForm.get('latitude').touched">
+                Comproba el format: 0.123456
+            </div>
+            <div
+                *ngIf="addNewLocationForm.get('latitude').hasError('required') && addNewLocationForm.get('latitude').touched">
+                El camp és obligatori!
+            </div>
+
+            <input class="longitude" type="text" formControlName="longitude" placeholder="Longitud. Ex.: 0.123456">
+
+            <div
+                *ngIf=" (addNewLocationForm.get('longitude').hasError('minlength') || addNewLocationForm.get('longitude').hasError('maxlength')) && addNewLocationForm.get('longitude').touched">
+                Comproba el format: 0.123456
+            </div>
+            <div
+                *ngIf="addNewLocationForm.get('longitude').hasError('required') && addNewLocationForm.get('longitude').touched">
+                El camp és obligatori!
+            </div>
+
+        </div>
+
+        <br>
+
+        <button class="btn btn-success" type="submit" [disabled]="!addNewLocationForm.valid">Acceptar</button>
+    </form>
+
+    <br>
+    <hr>
+
+    <!-- Botó per rebre totes les localitzacions -->
+    <h2>Veure llistat de localitzacions:</h2>
+
+    <button class="btn btn-primary" (click)="getLocations()">Consultar</button>
+    <p></p>
+    <div *ngIf="mostrar == true">
+        <table id="locations">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Estat</th>
+                    <th>Densitat</th>
+                    <th>Longitud</th>
+                    <th>Latitud</th>
+                    <th>Id</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let location of locations">
+                    <td>{{location.name}}</td>
+                    <td *ngIf="location.state == 1">Actiu</td>
+                    <td *ngIf="location.state == 0">Inactiu</td>
+                    <td>{{location.population}}</td>
+                    <td>{{location.latitude}}</td>
+                    <td>{{location.longitude}}</td>
+                    <td>{{location._id}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+    <hr>
+
+    <!-- Formulari per actualizar les dades d'una localització -->
+    <div *ngIf="mostrar == true">
+        <br>
+        <form [formGroup]="updateLocationForm" (ngSubmit)="updateLocation(updateLocationForm.value)">
+            <h2>Actualitzar una localització existent:</h2>
+
+            <input type="text" formControlName="name" placeholder="Nom del país">
+
+            <br>
+
+            <input type="text" formControlName="state" placeholder="1 = Actiu, 0 = Inactiu">
+
+            <input type="text" formControlName="population" placeholder="Nombre de la densitat de població del país">
+
+            <br>
+            <div class="coordenades">
+                <input class="latitude" type="text" formControlName="latitude" placeholder="Latitud. Ex.: 0.123456">
+
+                <input class="longitude" type="text" formControlName="longitude" placeholder="Longitud. Ex.: 0.123456">
+            </div>
+
+            <input type="text" formControlName="id" placeholder="Identificador del país">
+            <div *ngIf="updateLocationForm.get('id').hasError('required') && updateLocationForm.get('id').touched">
+                El camp és obligatori!.
+            </div>
+            <br>
+
+            <button class="btn btn-success" type="submit" [disabled]="!updateLocationForm.valid">Acceptar</button>
+        </form>
+    </div>

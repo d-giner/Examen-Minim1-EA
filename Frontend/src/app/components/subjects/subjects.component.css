@@ -1,0 +1,32 @@
+.form-container {
+    font: 95% Arial, Helvetica, sans-serif;
+    max-width: 690px;
+    padding: 16px;
+    margin: 10px auto;
+    background:lightblue;
+}
+
+input[type=text], [type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px snow;
+    border-radius: 4px;
+  }
+
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }
+
+    h1 {
+    background: #e27821;
+    padding: 20px 0;
+    font-size: 140%;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+    margin: -16px -16px 16px -16px;
+  }
+
+

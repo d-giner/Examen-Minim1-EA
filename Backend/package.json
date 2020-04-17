@@ -1,0 +1,37 @@
+{
+  "name": "simulacre-m1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ts:node": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node build/src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon",
+    "generate:swagger": "tsoa newroutes && tsoa swagger"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/mongoose": "^5.7.8",
+    "@types/swagger-jsdoc": "^3.0.2",
+    "@types/swagger-ui-express": "^4.1.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7",
+    "morgan": "^1.10.0",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4",
+    "tsoa": "^2.5.13"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.4",
+    "@types/morgan": "^1.9.0",
+    "mongoose-unique-array": "^0.3.4",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.8.3"
+  }
+}

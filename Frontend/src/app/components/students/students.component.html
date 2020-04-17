@@ -1,0 +1,142 @@
+<div class="form-container">
+    <h1>Students service</h1>
+    <form [formGroup]="myForm1" (ngSubmit)="postNewStudent(myForm1.value)">
+        <h2>Afegir un nou alumne:</h2>
+
+        <input type="text" formControlName="name" placeholder="Nom">
+        <div *ngIf="myForm1.get('name').hasError('required') && myForm1.get('name').touched">
+            El camp és obligatori!.
+        </div>
+
+        <br>
+
+        <!-- <input type="text" formControlName="id" placeholder="Identificador">
+        <div *ngIf="miFormulario.get('id').hasError('required') && miFormulario.get('id').touched">
+            El camp és obligatori!.
+        </div> -->
+
+        <!-- <br> -->
+
+        <input type="text" formControlName="address" placeholder="Adreça postal">
+        <div *ngIf="myForm1.get('address').hasError('required') && myForm1.get('address').touched">
+            El camp és obligatori!.
+        </div>
+
+        <br>
+        <div class="phones">
+            <input class="phone1" type="text" formControlName="phone1" placeholder="Telèfon de casa">
+
+            <div *ngIf=" myForm1.get('phone1').hasError('minlength') && myForm1.get('phone1').touched">
+                El telèfon ha de tenir al menys 9 nombres.
+            </div>
+            <div *ngIf=" myForm1.get('phone1').hasError('maxlength') && myForm1.get('phone1').touched">
+                El telèfon ha de tenir 9 nombres com a màxim.
+            </div>
+
+            <input class="phone2" type="text" formControlName="phone2" placeholder="Telèfon de la feina">
+
+            <div *ngIf=" myForm1.get('phone2').hasError('minlength') && myForm1.get('phone2').touched">
+                El telèfon ha de tenir al menys 9 nombres.
+            </div>
+            <div *ngIf=" myForm1.get('phone2').hasError('maxlength') && myForm1.get('phone2').touched">
+                El telèfon ha de tenir 9 nombres com a màxim.
+            </div>
+
+        </div>
+
+        <input type="text" formControlName="studies"
+            placeholder="Estudis que curses (en català): Telemàtica, Sistemes o Aeros">
+        <div *ngIf="myForm1.get('studies').hasError('required') && myForm1.get('studies').touched">
+            El camp és obligatori!
+        </div>
+
+        <br>
+        <br>
+
+        <!-- Camps de email i contrasenya reactius -->
+        <!-- <input type="password" formControlName="userpassword" placeholder="Password">
+        <label class="container-error-message"
+            *ngIf="myForm1.get('userpassword').hasError('required') && myForm1.get('userpassword').touched">
+            El campo es obligatorio.
+        </label>
+        <br />
+
+        <input type="text" formControlName="email" placeholder="Email">
+        <label class="container-error-message"
+            *ngIf="myForm1.get('email').hasError('required') && myForm1.get('email').touched">
+            El campo es obligatorio.
+
+        </label>
+        <label class="container-error-message"
+            *ngIf="myForm1.get('email').hasError('email') && myForm1.get('email').touched">
+            El campo debete tener el formate de un email.
+
+        </label> -->
+
+        <button class="btn btn-success" type="submit" [disabled]="!myForm1.valid">Acceptar</button>
+    </form>
+    <br>
+
+    <hr>
+
+    <!-- Botó per rebre tots els alumnes -->
+    <h2>Veure llistat d'alumnes matriculats:</h2>
+
+    <button class="btn btn-primary" (click)="getStudents()">Consultar</button>
+    <p></p>
+    <div *ngIf="mostrar == true">
+        <table id="students">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Adreça</th>
+                    <th>Telèfon de Casa</th>
+                    <th>Telèfon feina</th>
+                    <th>Estudis</th>
+                    <th>Id</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let student of students">
+                    <td>{{student.name}}</td>
+                    <td>{{student.address}}</td>
+                    <td>{{student.phones[0].home}}</td>
+                    <td>{{student.phones[0].work}}</td>
+                    <td>{{student.studies}}</td>
+                    <td>{{student._id}}</td>
+
+
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    <hr>
+
+    <!-- Filtrar alumnes per estudis: -->
+    <form [formGroup]="myForm2" (ngSubmit)="getStudentsByStudies(myForm2.value)">
+        <h2>Consultar alumnes d'una titulacó:</h2>
+
+        <input type="text" formControlName="studiesname" placeholder="Nom de la titulació">
+        <label *ngIf="myForm2.get('studiesname').hasError('required') && myForm2.get('studiesname').touched">
+            No oblidis emplenar el camp!
+        </label>
+
+        <br />
+
+        <button class="btn btn-success" type="submit" [disabled]="!myForm2.valid">Consultar</button>
+
+        <ul *ngIf="mostrarByStudies == true">
+            <h3>Estudiants que cursen {{typeStudies}}:</h3>
+            <li *ngFor="let student of sutdentsByStudies">
+                {{student.name}}
+        
+            </li>
+        </ul>
+
+    </form>
+
+</div>

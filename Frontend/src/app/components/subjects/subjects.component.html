@@ -1,0 +1,81 @@
+<div class="form-container">
+    <h1>Subjects service</h1>
+
+    <!-- Formulari per afegir una nova asignatura -->
+    <form [formGroup]="myForm1" (ngSubmit)="postNewSubject(myForm1.value)">
+        <h2>Afegir una nova assignatura:</h2>
+
+        <input type="text" formControlName="subjectname" placeholder="Nom de l'assignatura">
+        <div *ngIf="myForm1.get('subjectname').hasError('required') && myForm1.get('subjectname').touched">
+            No oblidis emplenar el camp!
+        </div>
+
+        <br />
+
+        <button class="btn btn-success" type="submit" [disabled]="!myForm1.valid">Acceptar</button>
+    </form>
+
+    <br>
+
+    <hr>
+
+    <!-- Botó per rebre totes les assignatures -->
+    <h2>Veure llistat d'assignatures existents:</h2>
+
+    <button class="btn btn-primary" (click)="getSubjects()">Consultar</button>
+
+    <ul *ngIf="mostrarLlistaAssignatures == true">
+        <h3>Llistat de les assginatures vigents:</h3>
+        <li *ngFor="let subject of subjects">
+            {{subject.name}}
+
+        </li>
+    </ul>
+
+    <br>
+    <br>
+
+    <hr>
+
+    <!-- Formulari per afegir un alumne a una assignatura -->
+    <form [formGroup]="myForm2" (ngSubmit)="addNewStudentOnSUbject(myForm2.value)">
+        <h2>Afegir un alumne a l'assignatura:</h2>
+        <input type="text" formControlName="studentid" placeholder="Identificador de l'estudiant">
+        <div *ngIf="myForm2.get('studentid').hasError('required') && myForm2.get('studentid').touched">
+            No oblidis indicar el nom de l'estudiant!
+        </div> 
+
+        <input type="text" formControlName="subjectname" placeholder="Nom de l'assignatura">
+        <div *ngIf="myForm2.get('subjectname').hasError('required') && myForm2.get('subjectname').touched">
+            No oblidis indicar el nom de l'assignatura!
+        </div>
+
+        <br />
+
+        <button class="btn btn-success" type="submit" [disabled]="!myForm2.valid">Afegir</button>
+    </form>
+    <br>
+
+    <hr>
+
+    <!-- Formulari per veure els alumnes matrículats en l'assginatura especificada -->
+    <form [formGroup]="myForm3" (ngSubmit)="getSubjectByName(myForm3.value)">
+        <h2>Veure els alumnes matriculats en una assignatura:</h2>
+        <input type="text" formControlName="subjectname" placeholder="Nom de l'assignatura">
+        <div *ngIf="myForm3.get('subjectname').hasError('required') && myForm3.get('subjectname').touched">
+            No oblidis indicar el nom de l'estudiant!
+        </div>
+
+        <br />
+
+        <button class="btn btn-success" type="submit" [disabled]="!myForm3.valid">Veure</button>
+
+        <ul *ngIf="mostrarAlumnesAssignatura == true">
+            <h3>Llistat d'alumnes matriculats a l'assignatura {{subjectName}}:</h3>
+            <li *ngFor="let student of students">
+                {{student.name}}
+
+            </li>
+        </ul>
+    </form>
+</div>
